@@ -2,7 +2,7 @@
 name: boss-recruitment-scraper
 description: |
   Scrape ALL job listings from a company on BOSS直聘 (zhipin.com) and save to CSV.
-  Outputs: 岗位名称, 职位描述, 薪资待遇 — matching the standard recruitment data format.
+  Outputs: 岗位名称, 职位描述, 薪资待遇, 工作地址 — matching the standard recruitment data format.
   
   Use this skill when the user:
   - Asks to "scrape jobs from BOSS直聘 for company X"
@@ -114,9 +114,9 @@ The script will:
 The CSV is saved to: `C:\Users\<USER>\Desktop\<COMPANY_NAME>_BOSS招聘.csv`
 
 Format:
-| 岗位名称 | 职位描述 | 薪资待遇 |
-|---------|---------|---------|
-| 大模型预训练研究员 | 1、聚焦机器人具身操纵场景... | 25-40K·15薪 |
+| 岗位名称 | 职位描述 | 薪资待遇 | 工作地址 |
+|---------|---------|---------|---------|
+| 大模型预训练研究员 | 1、聚焦机器人具身操纵场景... | 25-40K·15薪 | 上海浦东新区漕河泾康桥商务绿洲E2 |
 
 Each job description includes: responsibilities, requirements, and bonus qualifications.
 

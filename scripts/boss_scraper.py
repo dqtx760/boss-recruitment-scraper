@@ -6,7 +6,7 @@ BOSS直聘 公司岗位批量抓取工具 v2
   python boss_scraper.py <公司名> <brand_id> <target_id> [max_pages]
   python boss_scraper.py <公司名> --auto <target_id> [max_pages]
 
-输出: CSV 到桌面: 岗位名称, 职位描述, 薪资待遇
+输出: CSV 到桌面: 岗位名称, 职位描述, 薪资待遇, 工作地址
 """
 import requests, json, time, csv, sys, os, urllib.parse
 
@@ -97,11 +97,12 @@ def scrape_company(target, company_name, brand_id, max_pages=20):
             name = j.get("n", "").strip()
             desc = j.get("d", "").strip()
             sal = j.get("s", "").strip()
+            addr = j.get("a", "").strip()
             if name and len(name) < 120:
                 key = name[:50]
                 if key not in seen:
                     seen.add(key)
-                    all_jobs.append([name, desc, sal])
+                    all_jobs.append([name, desc, sal, addr])
                     new += 1
 
         print(f"{len(job_list)} found, {new} new, total {len(all_jobs)}", flush=True)
@@ -109,7 +110,7 @@ def scrape_company(target, company_name, brand_id, max_pages=20):
         # Save after each page
         with open(out, "w", newline="", encoding="utf-8-sig") as f:
             w = csv.writer(f)
-            w.writerow(["岗位名称", "职位描述", "薪资待遇"])
+            w.writerow(["岗位名称", "职位描述", "薪资待遇", "工作地址"])
             w.writerows(all_jobs)
 
         if pg > 2 and new == 0:
